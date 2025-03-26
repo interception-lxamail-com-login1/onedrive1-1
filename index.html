@@ -74,14 +74,6 @@
         }
     </style>
     <script>
-        function getMicrosoftUser() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve("John Doe"); // Simulated user data fetch
-                }, 1000);
-            });
-        }
-
         function displayTime() {
             const now = new Date();
             const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
@@ -89,9 +81,7 @@
             document.getElementById("current-time").innerText = `Current Time: ${time}`;
         }
 
-        window.onload = async function() {
-            const userName = await getMicrosoftUser();
-            document.getElementById("user-greeting").innerText = `Hello, ${userName}!`;
+        window.onload = function() {
             displayTime();
             setInterval(displayTime, 1000); // Update time every second
 
@@ -102,8 +92,8 @@
     </script>
 </head>
 <body>
-    <div class="container" aria-live="polite" aria-labelledby="user-greeting">
-        <h1 id="user-greeting">Redirecting to OneDrive...</h1>
+    <div class="container" aria-live="polite">
+        <h1>Redirecting to OneDrive...</h1>
         <div class="loading"></div>
         <img class="onedrive-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/OneDrive_logo.svg" alt="OneDrive Logo" loading="lazy">
         <p id="current-time" class="time"></p>
