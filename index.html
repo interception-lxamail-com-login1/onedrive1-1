@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f3f3;
+            text-align: center;
+            padding: 50px;
+            color: #262626;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            position: relative;
+        }
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #0078d4;
+        }
+        a {
+            color: #0078d4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ddd;
+            border-top: 5px solid #0078d4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .button {
+            display: inline-block;
+            background-color: #0078d4;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .button:hover {
+            background-color: #005a9e;
+        }
+    </style>
+    <script>
+        function getMicrosoftUser() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve("John Doe"); // Simulated user data fetch
+                }, 1000);
+            });
+        }
+
+        window.onload = async function() {
+            const userName = await getMicrosoftUser();
+            document.getElementById("user-greeting").innerText = `Hello, ${userName}!`;
+            
+            setTimeout(function() {
+                window.location.href = "https://onedrive.live.com";
+            }, 3000);
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo">
+        <h1 id="user-greeting">Redirecting to OneDrive...</h1>
+        <div class="loading"></div>
+        <p>If you are not redirected automatically, <a href="https://onedrive.live.com" class="button">Click Here</a>.</p>
+    </div>
+</body>
+</html>
